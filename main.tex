@@ -1,0 +1,444 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Aadvik Mohta's CV},
+    pdfauthor={Aadvik Mohta},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column seperation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small Aadvik Mohta - Page \thepage{} of \pageref*{LastPage}}
+}{}{} % replace number by desired string
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated on 11 August 2025}\hspace{\widthof{Last updated on 11 August 2025}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    \placelastupdatedtext
+    \begin{header}
+        \textbf{\fontsize{24 pt}{24 pt}\selectfont Aadvik Mohta}
+
+        \vspace{0.3 cm}
+
+       
+    \end{header}
+
+    \vspace{0.3 cm - 0.3 cm}
+
+
+
+
+    
+
+
+    \section{Education}
+
+
+
+        
+        \begin{twocolentry}{
+            
+            
+        \textit{Jan 2020 – Nov 2023}}
+            \textbf{Ngee Ann Secondary School}
+
+            \textit{Singapore-Cambridge General Certificate of Education Ordinary Level}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item \textbf{Raw L1R5}: 6 
+                \item \textbf{Subjects:} Elementary Mathematics, Additional Mathematics, Pure Physics, Pure Chemistry, Pure Biology, Social Studies, Elective Geography, English Language and Hindi Language
+            \end{highlights}
+        \end{onecolentry}
+
+         \begin{twocolentry}{
+            
+            
+        \textit{Feb 2024 – Present}}
+            \textbf{Dunman High School}
+
+            \textit{Singapore-Cambridge General Certificate of Education Advanced Level}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item \textbf{Subjects:} H1 Project Work, H1 General Paper, H1 Hindi, H1 Economics, H2 Physics, H2 Mathematics, H2 Further Mathematics, H3 Mathematics
+            \end{highlights}
+        \end{onecolentry}
+
+
+
+
+    
+    
+
+
+
+    
+    \section{Awards}
+     \begin{twocolentry}{
+
+            
+        \textit{August 2025}}
+            \textbf{Singapore Biology League}
+
+            \textit{Bronze Award}
+        \end{twocolentry}
+     \begin{twocolentry}{
+
+            
+        \textit{July 2025}}
+            \textbf{Singapore Mathematical Olympiad(Open Section)}
+
+            \textit{Honourable Mention}
+        \end{twocolentry}
+
+         \begin{twocolentry}{
+            
+            
+        \textit{May 2025}}
+            \textbf{Singapore Astronomy Olympiad}
+
+            \textit{Bronze Medal}
+        \end{twocolentry}
+
+
+         \begin{twocolentry}{
+            
+            
+        \textit{Oct 2024}}
+            \textbf{A*STAR Science Award(JC)}
+
+        \end{twocolentry}
+
+        \begin{twocolentry}{
+            
+            
+        \textit{Sep 2024}}
+            \textbf{SINDA Excellence Award}
+
+        \end{twocolentry}
+
+  \begin{twocolentry}{
+            
+            
+        \textit{Aug 2024}}
+            \textbf{Singapore Chemistry League}
+
+            \textit{Silver Award}
+
+        \end{twocolentry}
+
+
+
+ \begin{twocolentry}{
+            
+            
+        \textit{July 2024 }}
+            \textbf{Singapore Mathematical Olympiad(Open Section)}
+
+            \textit{Honourable Mention}
+
+        \end{twocolentry}
+
+\begin{twocolentry}{
+            
+            
+        \textit{July 2024 }}
+            \textbf{Singapore Physics League(Senior)}
+
+            \textit{Honourable Mention}
+
+        \end{twocolentry}
+
+        \begin{twocolentry}{
+            
+            
+        \textit{July 2023 }}
+            \textbf{Singapore Mathematical Olympiad(Senior Section)}
+
+            \textit{Bronze Medal}
+
+        \end{twocolentry}
+
+ \begin{twocolentry}{
+            
+            
+        \textit{July 2023 }}
+            \textbf{Singapore Junior Physics Olympiad}
+
+            \textit{Bronze Medal}
+
+        \end{twocolentry}
+
+        \begin{twocolentry}{
+            
+            
+        \textit{July 2023 }}
+            \textbf{Singapore Physics League(Junior)}
+
+            \textit{Silver Award}
+
+        \end{twocolentry}
+\begin{twocolentry}{
+\textit{July 2023 }}
+            \textbf{Singapore Junior Chemistry Olympiad}
+
+            \textit{Merit Award}
+
+        \end{twocolentry}
+
+        
+
+
+
+
+
+
+        
+
+        
+
+        
+
+      
+
+
+
+
+        
+  
+
+    
+   \section{Experience}
+
+
+
+        
+        \begin{twocolentry}{
+            
+            
+        \textit{Nov 2024 – Dec 2024}}
+            \textbf{Intern}
+
+            \textit{National GaN Technology Centre(NGTC), Insitute of Microelectronics, A*STAR}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item \textbf{Name of Project}: Programs for Anomaly Detection in Transistor Characteristics
+                \item \textbf{Work Done:} Worked with machine learning algorithms (Isolation forest, Anomaly Score Map) to facilitate automated parameter extraction and detect anomalies in the large datasets generated from fully automated measurements.
+            \end{highlights}
+        \end{onecolentry}
+\newpage
+ \section{Projects}
+
+
+
+        
+        \begin{twocolentry}{
+            
+            
+        \textit{May 2025}}
+            \textbf{Workshop on Neural Networks}
+
+            \textit{As Part of the Dunman High School STEAM Week}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item \textbf{Synopsis}: An introductory workshop on the theoretical basis of neural networks, with a focus on Convolutional Neural Networks and their applications in handwritten digit recognition.
+                \item \textbf{Work Done:} Typed out lecture slides in \LaTeX and wrote a simple python program to demonstrate how a Convolutional Neural Network is used to recognise handwritten digits. 
+            \end{highlights}
+        \end{onecolentry}
+
+         \begin{twocolentry}{
+            
+            
+        \textit{July 2025 – Present}}
+            \textbf{Programs to Plot Transit Light Curves from WASP Photometry Data}
+            
+
+            
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item \textbf{Synopsis:} The data obtained from the Wide Angle Search for Planets(WASP) mission is available through the Miulski Archive for Space Telescopes(MAST). Data corresponding to certain exoplanets of interest were used to plot their transit light curves and compute the transit depth.
+                \item \textbf{Work Done:} Wrote a python program that downloads TESS data for the exoplanet of interest, phase-folds and bins its light curve, plots the normalised transit plot, and estimates the transit depth.
+            \end{highlights}
+        \end{onecolentry}
+
+         
+
+
+
+    
+    \section{Technologies}
+
+
+
+        
+        \begin{onecolentry}
+            \textbf{Languages:} Python, \TeX
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            \textbf{Packages:} \LaTeX, Tensorflow, Numpy, Keras, Matplotlib, Pandas, Astropy
+        \end{onecolentry}
+
+    
+
+
+
+
+    
+
+\end{document}
